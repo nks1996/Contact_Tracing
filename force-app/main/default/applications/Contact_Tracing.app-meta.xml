@@ -14,6 +14,13 @@
     <tabs>Location__c</tabs>
     <tabs>People_Tracing__c</tabs>
     <tabs>Location_Tracing__c</tabs>
+    <tabs>CTHealthAdmin</tabs>
+    <tabs>Person_View</tabs>
+    <tabs>Location_View</tabs>
+    <tabs>GitHub_Push_Details__c</tabs>
+    <tabs>Student__c</tabs>
+    <tabs>School__c</tabs>
+    <tabs>Registered_User__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Contact_Tracing_UtilityBar</utilityBar>
 </CustomApplication>
