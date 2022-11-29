@@ -1,0 +1,42 @@
+<apex:page standardController="Statement__c" extensions="Payments_Extension" sidebar="false" showHeader="false">
+    <apex:form >
+        <apex:pageBlock title="Quick Payment" mode="edit">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save Payment" action="{!savePayment}" disabled="{!success}" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages />
+            <apex:pageBlockSection columns="1">
+                <apex:selectList label="Payment Method" value="{!thisPayment.recordTypeId}">
+                    <apex:selectOptions value="{!paymentRecordTypes}" />
+                    <apex:actionSupport event="onchange" reRender="paymentMethodDetails"/>
+                </apex:selectList>
+                <apex:inputfield value="{!thisPayment.Amount__c}" />
+                <apex:inputfield value="{!thisPayment.Billing_Name__c}" />
+                <apex:inputfield value="{!thisPayment.Billing_Street__c}" />
+                <apex:inputfield value="{!thisPayment.Billing_City__c}" />
+                <apex:inputfield value="{!thisPayment.Billing_State__c}" />
+                <apex:inputfield value="{!thisPayment.Billing_Postal_Code__c}" />
+            </apex:pageBlockSection>
+            <apex:outputPanel id="paymentMethodDetails">
+                <apex:pageBlockSection columns="1" rendered="{!thisPayment.recordTypeId!=null && recordTypeMap[thisPayment.recordTypeId]=='Check'}">
+                    <apex:inputfield value="{!thisPayment.Check_Account_Number__c}" />
+                    <apex:inputfield value="{!thisPayment.Check_Routing_Number__c}" />
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection columns="1" rendered="{!thisPayment.recordTypeId!=null && recordTypeMap[thisPayment.recordTypeId]=='Credit Card'}">
+                    <apex:inputfield value="{!thisPayment.Credit_Card_Number__c} " />
+                    <apex:pageBlockSectionItem > 
+                        <apex:outputLabel value="Credit Card Expiration" />
+                        <apex:outputPanel layout="none">
+                            <apex:inputField value="{!thisPayment.Credit_Card_Expiration_month__c }"/>
+                            <apex:selectList value="{!thisPayment.Expiration_Year__c }">
+                                <apex:selectOptions value="{!expirationYears}" />
+                            </apex:selectList>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:inputSecret value="{!thisPayment.Credit_Card_Security_Card__c }" />
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+        </apex:pageBlock>   
+    </apex:form>
+</apex:page>

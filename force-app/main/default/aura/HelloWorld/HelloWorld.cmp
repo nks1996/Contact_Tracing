@@ -1,0 +1,37 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+  <aura:attribute
+    name="helloWorldTest"
+    type="String"
+    default="Hello to the Aura World!- Title"
+  />
+  <aura:attribute
+    name="helloWorldTestFooterTest"
+    type="String"
+    default="Hello to the Aura World!-Footer"
+  />
+  <aura:attribute name="redBoxTest" type="String" default="RedButton!!!" />
+  <aura:attribute name="booleanTest" type="Boolean" default="false" />
+  <aura:attribute name="integerTest" type="Integer" default="22" />
+
+  <lightning:card
+    footer="{!v.helloWorldTestFooterTest}"
+    title="{!v.helloWorldTest}"
+  >
+    <lightning:layout horizontalAlign="center">
+      <lightning:layoutItem size="9" padding="around-small">
+        <p class="slds-var-p-horizontal_small">
+          This is my first aura component build, {!v.helloWorldTest},
+          {!v.booleanTest}, {!v.integerTest}, {!v.redBoxTest},
+          {!v.helloWorldTestFooterTest}
+        </p>
+      </lightning:layoutItem>
+      <lightning:layoutItem size="3" padding="around-small">
+        <lightning:button
+          variant="destructive"
+          label="{!v.redBoxTest}"
+          title="{!v.redBoxTest}"
+        />
+      </lightning:layoutItem>
+    </lightning:layout>
+  </lightning:card>
+</aura:component>
